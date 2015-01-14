@@ -1,0 +1,35 @@
+TOP := ../..
+
+COMM_DIR := ..
+
+SRC_DIR := $(TOP)/Demos
+
+## Name and type of the target for this Makefile
+
+APP_TARGET := sqllite3_hr
+
+## Define debugging symbols
+CFLAGS += -D_SQLITE3_DB
+CFLAGS += -D_LINUX_
+
+## Object files that compose the target(s)
+
+CPP := CppDBDemo
+
+OBJS := $(SRC)/CppSQLite3
+
+## Libraries to include in shared object file
+
+LIBS := sqllite3
+
+INC_PATH += $(TOP)/include
+				   
+LIB_PATH :=	../../lib/libsqlite3/release/linux
+
+# include $(COMM_DIR)/common.mk
+
+$(APP_TARGET):$(SRC_DIR)/$(CPP).cpp $(LIB_PATH)/lib$(LIBS).so
+	g++ $(CFLAGS) -O2  -I$(INC_PATH) -o $(APP_TARGET) $(SRC_DIR)/$(CPP).cpp $(LIB_PATH)/lib$(LIBS).so -lpthread -ldl
+
+clean:
+	rm -f $(APP_TARGET)

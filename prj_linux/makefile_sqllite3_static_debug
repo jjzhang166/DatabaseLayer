@@ -1,0 +1,59 @@
+###
+### Copyright (c) 2004 Keda Telecom, Inc.
+###
+
+#########################################################################
+###
+###  DESCRIPTION:
+###    Common definitions for all Makefiles in UAS linux project.
+###
+#########################################################################
+
+TOP := ..
+
+COMM_DIR := ..
+
+SRC_DIR := $(TOP)/src
+
+## Name and type of the target for this Makefile
+
+ARC_TARGET := sqllite3
+
+## Define debugging symbols
+CFLAGS += -D_SQLITE3_DB
+CFLAGS += -D_LINUX_
+CFLAGS += -D_DEBUG
+
+## Object files that compose the target(s)
+
+CPP := CppSQLite3
+
+OBJS := $(SRC)/CppSQLite3
+
+## Libraries to include in shared object file
+
+LIBS := sqlite3
+
+
+##	pthread rt osp kdvsys snmpadp dbi mysqlclient comdata\
+##        sybct sybcs sybtcl sybblk sybdb sybunic dl z kdvencrypt nipx86
+
+## Add driver-specific include directory to the search path
+
+INC_PATH += $(TOP)/include
+				   
+LIB_PATH :=	../lib/libsqlite3/debug/linux
+
+# include $(COMM_DIR)/common.mk
+
+$(LIB_PATH)/lib$(ARC_TARGET).a:$(SRC_DIR)/$(CPP).cpp $(INC_PATH)/$(CPP).h $(LIB_PATH)/lib$(LIBS).a
+	g++ -g $(CFLAGS) -O2  -I$(INC_PATH)   -c -o $(CPP).o $(SRC_DIR)/$(CPP).cpp
+	ar x $(LIB_PATH)/lib$(LIBS).a
+	ar rv $(LIB_PATH)/lib$(ARC_TARGET).a $(CPP).o $(LIBS).o
+
+clean:
+	rm -f *.o
+	rm -f $(LIB_PATH)/lib$(ARC_TARGET).a
+
+
+

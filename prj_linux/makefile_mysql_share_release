@@ -1,0 +1,34 @@
+TOP := ..
+
+COMM_DIR := ..
+
+SRC_DIR := $(TOP)/src
+
+## Name and type of the target for this Makefile
+
+APP_TARGET := mysql
+
+## Define debugging symbols
+CFLAGS += -D_MySQL_DB
+CFLAGS += -D_LINUX_
+
+## Object files that compose the target(s)
+
+CPP := CppMySQL
+
+## Libraries to include in shared object file
+
+LIBS := mysqlclient
+
+INC_PATH += $(TOP)/include
+				   
+LIB_PATH :=	../lib/libmysql/opt/linux
+
+# include $(COMM_DIR)/common.mk
+
+$(LIB_PATH)/lib$(APP_TARGET).so:$(SRC_DIR)/$(CPP).cpp $(LIB_PATH)/lib$(LIBS).a
+	g++ -fPIC $(CFLAGS) -O2  -I$(INC_PATH) -I$(INC_PATH)/MySQL -shared -o $(LIB_PATH)/lib$(APP_TARGET).so $(SRC_DIR)/$(CPP).cpp $(LIB_PATH)/lib$(LIBS).a -lpthread -ldl
+
+clean:
+	rm -f $(LIB_PATH)/lib$(APP_TARGET).so
+	rm -f $(SRC_DIR)/$(CPP).o

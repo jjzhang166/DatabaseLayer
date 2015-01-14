@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="_Suite">
+      <UniqueIdentifier>{a658e141-359a-4d85-9862-96038c57d9ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Driver">
+      <UniqueIdentifier>{e843d33a-39a2-4612-bdae-15e7f67ef810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MySQL">
+      <UniqueIdentifier>{92ff8803-5877-4990-afb9-fa0fb7ca5241}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DBTests.cpp">
+      <Filter>MySQL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinDriver.cpp">
+      <Filter>_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CppMySQLTests.cpp">
+      <Filter>MySQL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CppDBTestsSuite.cpp">
+      <Filter>_Suite</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\DBTests.h">
+      <Filter>MySQL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CppDBTestsSuite.h">
+      <Filter>_Suite</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
