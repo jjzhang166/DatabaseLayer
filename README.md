@@ -1,6 +1,6 @@
 #DatabaseLayer
 
-DatabaseLayer是一个数据库组件，参考了CppSQLite和POCO中的数据库实现。目前支持Sqlite3和MySQL，支持跨平台。
+DatabaseLayer是一个数据库组件，参考了[CppSQLite](http://www.codeproject.com/Articles/6343/CppSQLite-C-Wrapper-for-SQLite)和[POCO](http://pocoproject.org/index.html)中的数据库实现。目前支持Sqlite3和MySQL，支持跨平台。
 
 特点：
 
